@@ -44,8 +44,12 @@ def checkout(request):
             order.save()
 
         if online_payment == "online":
+<<<<<<< HEAD
             return redirect("online_payment")  
 
+=======
+            return redirect("online_payment") 
+>>>>>>> 946426bad3dff95dcc7a6a420c2d34f1a055b6b0
         return redirect("thank_you")
 
     return render(request, "checkout.html")
@@ -60,9 +64,15 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
+<<<<<<< HEAD
             user = form.save()          
             login(request, user)          
             return redirect("home")      
+=======
+            user = form.save()            
+            login(request, user)        
+            return redirect("home")       
+>>>>>>> 946426bad3dff95dcc7a6a420c2d34f1a055b6b0
     else:
         form = UserCreationForm()
     return render(request, "registration/register.html", {"form": form})
