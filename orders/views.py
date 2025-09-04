@@ -55,13 +55,7 @@ def checkout(request):
 def thank_you(request):
     return render(request, "order_success.html")
 
-
-
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from .models import Pizza
-
+@login_required
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -72,3 +66,15 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, "registration/register.html", {"form": form})
+
+@login_required
+def online_payment(request):
+    if request.method == "POST":
+        payment_method = request.POST.get("payment_method")
+        # You can save this choice to the order or process it later
+        order = Order.objects.filter(user=request.user, is_completed=False).first()
+        if order:
+            order.payment_method = payment_method
+            order.save()
+        return redirect("thank_you")
+    return render(request, "online_payment.html")

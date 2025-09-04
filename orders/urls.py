@@ -11,7 +11,8 @@ urlpatterns = [
     path("home/", views.home, name="home"),
     path("register/", views.register, name="register"),
     path("cart/", views.cart, name="cart"),
-    path("checkout/", views.checkout, name="checkout"),
-    path("thank-you/", views.thank_you, name="thank_you"),
     path("add-to-cart/<int:pizza_id>/", views.add_to_cart, name="add_to_cart"),
+    path("checkout/", views.checkout, name="checkout"),
+    path("online-payment/", views.online_payment, name="online_payment"),
+    path("thank-you/", views.thank_you, name="thank_you"),
 ]
