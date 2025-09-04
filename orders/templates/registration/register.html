@@ -26,7 +26,7 @@
 
     h2 {
       margin-bottom: 20px;
-      color: #d9534f; 
+      color: #d9534f;
     }
 
     label {
@@ -36,7 +36,7 @@
       text-align: left;
     }
 
-    input[type="text"], input[type="password"], input[type="email"] {
+    input[type="text"], input[type="password"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
@@ -46,7 +46,7 @@
     }
 
     input:focus {
-      border-color: #d9534f; 
+      border-color: #d9534f;
     }
 
     button {
@@ -61,7 +61,7 @@
     }
 
     button:hover {
-      background: #c9302c; 
+      background: #c9302c;
     }
 
     .errorlist {
@@ -93,9 +93,28 @@
   <div class="register-container">
     <h2>📝 Register</h2>
 
+    <!-- Form -->
     <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
+
+      <!-- Non-field errors -->
+      {% if form.non_field_errors %}
+        <div class="errorlist">
+          {% for error in form.non_field_errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <label for="id_username">Username</label>
+      {{ form.username }}
+
+      <label for="id_password1">Password</label>
+      {{ form.password1 }}
+
+      <label for="id_password2">Confirm Password</label>
+      {{ form.password2 }}
+
       <button type="submit">Register</button>
     </form>
 
