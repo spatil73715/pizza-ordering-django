@@ -1,0 +1,97 @@
+/* =====================
+   Global Styles
+===================== */
+body {
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #ff5733;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: #333;
+    margin: 20px 0;
+}
+
+/* =====================
+   Pizza Menu Page
+===================== */
+table {
+    width: 80%;
+    margin: 0 auto 20px auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+th {
+    background: #ff5733;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background: #f9f9f9;
+}
+
+a.add-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #ff5733;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+a.add-btn:hover {
+    background: #e64e2c;
+}
+
+.order-link {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px 16px;
+    background: #28a745;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.order-link:hover {
+    background: #218838;
+}
+
+/* =====================
+   Cart Page
+===================== */
+.cart-container {
+    width: 60%;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.cart-container ul {
+    list-sty

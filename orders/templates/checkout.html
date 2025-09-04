@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #ff5733;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    h2, h3 {
+      text-align: center;
+      color: #ff5733;
+      margin: 20px 0;
+    }
+
+    /* Container */
+    .cart-container {
+      width: 50%;
+      margin: 30px auto;
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    /* Payment options */
+    label {
+      font-size: 16px;
+      background: #f9f9f9;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, border 0.3s;
+      width: 100%;
+    }
+
+    label:hover {
+      background: #f1f1f1;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    /* Button */
+    .checkout-btn {
+      align-self: center;
+      padding: 12px 25px;
+      background: #28a745;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .checkout-btn:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Checkout 🛒</h1>
+  </header>
+
+  <div class="cart-container">
+    <h2>Confirm Your Order</h2>
+
+    <form method="post">
+      {% csrf_token %}
+      
+      <h3>Payment Method</h3>
+      <label>
+        <input type="radio" name="payment_method" value="cod" required>
+        Cash on Delivery
+      </label>
+      <label>
+        <input type="radio" name="payment_method" value="online" required>
+        Online Payment
+      </label>
+
+      <button type="submit" class="checkout-btn">Place Order</button>
+    </form>
+  </div>
+</body>
+</html>

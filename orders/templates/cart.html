@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #ff5733;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff5733;
+      margin: 20px 0;
+    }
+
+    .cart-container {
+      width: 60%;
+      margin: 20px auto;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      background: #f9f9f9;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    .checkout-btn {
+      display: block;
+      width: fit-content;
+      margin: 20px auto 0 auto;
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .checkout-btn:hover {
+      background: #218838;
+    }
+
+    .empty {
+      text-align: center;
+      font-size: 18px;
+      color: #777;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🛒 Your Cart</h1>
+</header>
+
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  
+  {% if order %}
+    <ul>
+      {% for item in order.items.all %}
+    <li>{{ item.pizza.name }} × {{ item.quantity }}</li>
+{% endfor %}
+    </ul>
+    <a href="{% url 'checkout' %}" class="checkout-btn">Proceed to Checkout</a>
+  {% else %}
+    <p class="empty">Your cart is empty 😔</p>
+  {% endif %}
+</div>
+
+</body>
+</html>

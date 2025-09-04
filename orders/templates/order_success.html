@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Success</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .thankyou-box {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+
+    h2 {
+      color: #28a745;
+      margin-bottom: 20px;
+    }
+
+    a.back-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #ff5733;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    a.back-btn:hover {
+      background: #e64e2c;
+    }
+  </style>
+</head>
+<body>
+
+<div class="thankyou-box">
+  <h2>✅ Thank you! Your order has been placed.</h2>
+  <a href="{% url 'home' %}" class="back-btn">🍕 Back to Menu</a>
+</div>
+
+</body>
+</html>

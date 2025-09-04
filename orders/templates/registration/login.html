@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Pizza Ordering</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #d9534f;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus {
+      border-color: #d9534f;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #d9534f;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #c9302c;
+    }
+
+    .error {
+      color: red;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .register-link {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .register-link a {
+      color: #d9534f;
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>🍕 Pizza Login</h2>
+
+    {% if form.errors %}
+      <p class="error">Invalid username or password. Please try again.</p>
+    {% endif %}
+
+    <!-- ✅ fixed: form action points to Django's login URL -->
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <label for="id_username">Username</label>
+      {{ form.username }}
+
+      <label for="id_password">Password</label>
+      {{ form.password }}
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="register-link">
+      Don’t have an account? <a href="{% url 'register' %}">Register</a>
+    </div>
+  </div>
+
+</body>
+</html>
