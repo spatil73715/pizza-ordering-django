@@ -5,14 +5,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 
-# 🍕 Pizza Menu (Home)
+
 @login_required
 def home(request):
     pizzas = Pizza.objects.all()
     return render(request, "index.html", {"pizzas": pizzas})
 
 
-# 🛒 Add to Cart
+
 @login_required
 def add_to_cart(request, pizza_id):
     pizza = get_object_or_404(Pizza, id=pizza_id)
@@ -24,14 +24,14 @@ def add_to_cart(request, pizza_id):
     return redirect("cart")
 
 
-# 🛒 Cart Page
+
 @login_required
 def cart(request):
     order = Order.objects.filter(user=request.user, is_completed=False).first()
     return render(request, "cart.html", {"order": order})
 
 
-# 💳 Checkout
+
 @login_required
 def checkout(request):
     if request.method == "POST":
@@ -44,19 +44,19 @@ def checkout(request):
             order.save()
 
         if online_payment == "online":
-            return redirect("online_payment")  # integrate later
+            return redirect("online_payment")  
 
         return redirect("thank_you")
 
     return render(request, "checkout.html")
 
 
-# ✅ Thank You Page
+
 def thank_you(request):
     return render(request, "order_success.html")
 
 
-# 📝 Register
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -66,9 +66,9 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()            # create the new user
-            login(request, user)          # auto login the user
-            return redirect("home")       # go to pizza menu after register
+            user = form.save()          
+            login(request, user)          
+            return redirect("home")      
     else:
         form = UserCreationForm()
     return render(request, "registration/register.html", {"form": form})
