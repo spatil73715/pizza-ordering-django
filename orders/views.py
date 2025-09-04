@@ -44,8 +44,7 @@ def checkout(request):
             order.save()
 
         if online_payment == "online":
-            return redirect("online_payment")  # integrate later
-
+            return redirect("online_payment") 
         return redirect("thank_you")
 
     return render(request, "checkout.html")
@@ -66,9 +65,9 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()            # create the new user
-            login(request, user)          # auto login the user
-            return redirect("home")       # go to pizza menu after register
+            user = form.save()            
+            login(request, user)        
+            return redirect("home")       
     else:
         form = UserCreationForm()
     return render(request, "registration/register.html", {"form": form})
