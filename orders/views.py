@@ -80,3 +80,21 @@ def online_payment(request):
             order.save()
         return redirect("thank_you")
     return render(request, "online_payment.html")
+
+# orders/views.py
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Order
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def add_address(request):
+    order = Order.objects.filter(user=request.user, is_completed=False).first()
+
+    if request.method == "POST":
+        address = request.POST.get("address")
+        if order:
+            order.address = address
+            order.save()
+        return redirect("checkout") 
+
+    return render(request, "add_address.html", {"order": order})

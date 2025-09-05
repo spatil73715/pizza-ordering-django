@@ -86,12 +86,12 @@
   {% if order %}
     <ul>
       {% for item in order.items.all %}
-    <li>{{ item.pizza.name }} × {{ item.quantity }}</li>
-{% endfor %}
+        <li>{{ item.pizza.name }} × {{ item.quantity }}</li>
+      {% endfor %}
     </ul>
-    <a href="{% url 'checkout' %}" class="checkout-btn">Proceed to Checkout</a>
+    <a href="{% url 'add_address' %}" class="checkout-btn">🚚 Proceed to Address</a>
   {% else %}
-    <p class="empty">Your cart is empty </p>
+    <p class="empty">Your cart is empty</p>
   {% endif %}
 </div>
 

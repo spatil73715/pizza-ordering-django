@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <style>
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #fdf6f0;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
       margin: 0;
       padding: 0;
     }
@@ -16,84 +16,61 @@
     header {
       background: #ff5733;
       color: white;
-      padding: 20px 0;
+      padding: 15px;
       text-align: center;
+    }
+
+    h3 {
+      text-align: center;
+      color: #ff5733;
+      margin: 20px 0;
+    }
+
+    table {
+      width: 80%;
+      margin: 0 auto 20px auto;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      letter-spacing: 1px;
+    th {
+      background: #ff5733;
+      color: white;
+      padding: 12px;
+      text-align: left;
     }
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 30px auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
     }
 
-    .pizza-card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      width: 250px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+    tr:hover {
+      background: #f9f9f9;
     }
 
-    .pizza-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .pizza-card h2 {
-      margin: 10px 0;
-      color: #ff5733;
-      font-size: 1.4rem;
-      text-align: center;
-    }
-
-    .pizza-card p {
-      font-size: 0.95rem;
-      color: #555;
-      text-align: center;
-      margin: 5px 0 15px 0;
-    }
-
-    .pizza-card span.price {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #28a745;
-    }
-
-    .add-btn {
+    a.add-btn {
       display: inline-block;
-      padding: 10px 20px;
+      padding: 6px 12px;
       background: #ff5733;
       color: white;
       text-decoration: none;
       border-radius: 6px;
-      font-weight: bold;
       transition: background 0.3s;
     }
 
-    .add-btn:hover {
+    a.add-btn:hover {
       background: #e64e2c;
     }
 
-    .cart-link {
+    .order-link {
       display: block;
       width: fit-content;
-      margin: 30px auto;
-      padding: 12px 25px;
+      margin: 20px auto;
+      padding: 10px 16px;
       background: #28a745;
       color: white;
       font-weight: bold;
@@ -102,7 +79,7 @@
       transition: background 0.3s;
     }
 
-    .cart-link:hover {
+    .order-link:hover {
       background: #218838;
     }
   </style>
@@ -113,20 +90,34 @@
   <h1>🍕 Welcome to Pizza Ordering 🍕</h1>
 </header>
 
-<div class="container">
-  {% for pizza in pizzas %}
-  <div class="pizza-card">
-    <h2>{{ pizza.name }}</h2>
-    <p>{{ pizza.description }}</p>
-    <span class="price">₹{{ pizza.price }}</span>
-    <a href="{% url 'add_to_cart' pizza.id %}" class="add-btn">Add to Cart</a>
-  </div>
-  {% empty %}
-  <p>No pizzas available right now.</p>
-  {% endfor %}
-</div>
+<h3>Pizza Menu 🍕</h3>
 
-<a href="{% url 'cart' %}" class="cart-link">🛒 Go to Cart / Checkout</a>
+<table>
+  <thead>
+    <tr>
+      <th>Pizza Name</th>
+      <th>Description</th>
+      <th>Price (₹)</th>
+      <th>Add to Cart</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pizza in pizzas %}
+    <tr>
+      <td>{{ pizza.name }}</td>
+      <td>{{ pizza.description }}</td>
+      <td>{{ pizza.price }}</td>
+      <td><a href="{% url 'add_to_cart' pizza.id %}" class="add-btn">Add to Cart</a></td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">No pizzas available right now</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'cart' %}" class="order-link">👉 Place an Order</a>
 
 </body>
 </html>
