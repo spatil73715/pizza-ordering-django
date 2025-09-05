@@ -81,10 +81,6 @@ def online_payment(request):
         return redirect("thank_you")
     return render(request, "online_payment.html")
 
-# orders/views.py
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Order
-from django.contrib.auth.decorators import login_required
 
 @login_required
 def add_address(request):
