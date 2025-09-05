@@ -1,15 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Pizza, Order, OrderItem
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from .models import Pizza, Order, OrderItem
 
 
 
 @login_required
 def home(request):
-    pizzas = Pizza.objects.all()
-    return render(request, "index.html", {"pizzas": pizzas})
+   pizzas = Pizza.objects.all()
+   return render(request, "index.html", {"pizzas": pizzas})
+
+
+
+
 
 
 
@@ -22,7 +26,6 @@ def add_to_cart(request, pizza_id):
         order_item.quantity += 1
     order_item.save()
     return redirect("cart")
-
 
 
 @login_required
@@ -44,12 +47,11 @@ def checkout(request):
             order.save()
 
         if online_payment == "online":
-            return redirect("online_payment")  
+            return redirect("online_payment")
 
         return redirect("thank_you")
 
     return render(request, "checkout.html")
-
 
 
 def thank_you(request):
@@ -57,23 +59,23 @@ def thank_you(request):
 
 
 
-
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()          
-            login(request, user)          
-            return redirect("home")      
+            user = form.save()
+            login(request, user)
+            return redirect("home")
     else:
         form = UserCreationForm()
     return render(request, "registration/register.html", {"form": form})
+
+
 
 @login_required
 def online_payment(request):
     if request.method == "POST":
         payment_method = request.POST.get("payment_method")
-        # You can save this choice to the order or process it later
         order = Order.objects.filter(user=request.user, is_completed=False).first()
         if order:
             order.payment_method = payment_method
@@ -81,10 +83,6 @@ def online_payment(request):
         return redirect("thank_you")
     return render(request, "online_payment.html")
 
-# orders/views.py
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Order
-from django.contrib.auth.decorators import login_required
 
 @login_required
 def add_address(request):
@@ -95,6 +93,6 @@ def add_address(request):
         if order:
             order.address = address
             order.save()
-        return redirect("checkout") 
+        return redirect("checkout")
 
     return render(request, "add_address.html", {"order": order})

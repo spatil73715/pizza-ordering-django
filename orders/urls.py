@@ -16,4 +16,5 @@ urlpatterns = [
     path("checkout/", views.checkout, name="checkout"),
     path("online-payment/", views.online_payment, name="online_payment"),
     path("thank-you/", views.thank_you, name="thank_you"),
+    
 ]
