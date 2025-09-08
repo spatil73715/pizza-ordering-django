@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Online Payment - Pizza Ordering</title>
+  <meta charset="UTF-8" />
+  <title>Online Payment - Pizza Delight</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -28,20 +28,53 @@
       color: #d9534f;
     }
 
-    button {
+    .payment-option {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      background: #f1f1f1;
+      padding: 12px 15px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .payment-option:hover {
+      background: #e1e1e1;
+    }
+
+    .payment-option input[type="radio"] {
+      margin-right: 12px;
+      width: 18px;
+      height: 18px;
+      accent-color: #d9534f;
+      cursor: pointer;
+    }
+
+    .payment-option label {
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit-btn {
       width: 100%;
       padding: 12px;
-      margin: 10px 0;
+      margin-top: 20px;
       border: none;
       border-radius: 6px;
       background: #d9534f;
       color: white;
       font-size: 16px;
       cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
     }
 
-    button:hover {
+    .submit-btn:hover {
       background: #c9302c;
+      transform: translateY(-2px);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -50,9 +83,19 @@
     <h2>💳 Choose Payment Method</h2>
     <form method="post">
       {% csrf_token %}
-      <button type="submit" name="payment_method" value="debit_card">Debit / Credit Card</button>
-      <button type="submit" name="payment_method" value="upi">UPI / Wallet</button>
-      <button type="submit" name="payment_method" value="net_banking">Net Banking</button>
+      <div class="payment-option">
+        <input type="radio" name="payment_method" value="debit_card" id="debit_card" required>
+        <label for="debit_card">Debit / Credit Card</label>
+      </div>
+      <div class="payment-option">
+        <input type="radio" name="payment_method" value="upi" id="upi">
+        <label for="upi">UPI / Wallet</label>
+      </div>
+      <div class="payment-option">
+        <input type="radio" name="payment_method" value="net_banking" id="net_banking">
+        <label for="net_banking">Net Banking</label>
+      </div>
+      <button type="submit" class="submit-btn">Proceed to Pay</button>
     </form>
   </div>
 </body>

@@ -1,6 +1,4 @@
-/* =====================
-   Global Styles
-===================== */
+
 body {
     font-family: Arial, sans-serif;
     background: #fafafa;
@@ -81,9 +79,7 @@ a.add-btn:hover {
     background: #218838;
 }
 
-/* =====================
-   Cart Page
-===================== */
+
 .cart-container {
     width: 60%;
     margin: 40px auto;

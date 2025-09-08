@@ -3,11 +3,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Checkout</title>
+  <title>Checkout - Pizza Delight</title>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background: #f8f9fa;
       display: flex;
       justify-content: center;
@@ -21,25 +21,72 @@
       background: white;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       width: 400px;
     }
 
     h2 {
       text-align: center;
       color: #d9534f;
+      margin-bottom: 25px;
+    }
+
+    .option-group {
       margin-bottom: 20px;
     }
 
-    label {
+    .option-label {
       display: block;
-      margin-bottom: 10px;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 15px;
       cursor: pointer;
-      font-weight: bold;
+      font-size: 16px;
+      user-select: none;
     }
 
-    input[type="radio"] {
-      margin-right: 10px;
+    .option-label input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .checkmark {
+      position: absolute;
+      top: 2px;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: #eee;
+      border-radius: 50%;
+      transition: background-color 0.3s;
+    }
+
+    .option-label:hover input ~ .checkmark {
+      background-color: #ddd;
+    }
+
+    .option-label input:checked ~ .checkmark {
+      background-color: #d9534f;
+    }
+
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    .option-label input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    .option-label .checkmark:after {
+      top: 5px;
+      left: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: white;
     }
 
     .payment-options {
@@ -49,43 +96,70 @@
 
     button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background: #d9534f;
       color: white;
       font-size: 16px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 20px;
+      transition: background 0.3s, transform 0.2s;
     }
 
     button:hover {
       background: #c9302c;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
   <div class="checkout-container">
     <h2>Checkout 🛒</h2>
-
     <form method="post">
       {% csrf_token %}
-
-      <label>
-        <input type="radio" name="payment_method" value="cod" onclick="hideOptions()" required>
-        Cash on Delivery
-      </label>
-
-      <label>
-        <input type="radio" name="payment_method" value="online" onclick="showOptions()" required>
-        Online Payment
-      </label>
+      
+      <div class="option-group">
+        <label class="option-label">
+          <input type="radio" name="payment_method" value="cod" onclick="hideOptions()" required>
+          Cash on Delivery
+          <span class="checkmark"></span>
+        </label>
+        
+        <label class="option-label">
+          <input type="radio" name="payment_method" value="online" onclick="showOptions()" required>
+          Online Payment
+          <span class="checkmark"></span>
+        </label>
+      </div>
 
       <div id="onlineOptions" class="payment-options">
-        <label><input type="radio" name="online_option" value="debit_card" required> Debit Card</label>
-        <label><input type="radio" name="online_option" value="credit_card"> Credit Card</label>
-        <label><input type="radio" name="online_option" value="upi"> UPI</label>
-        <label><input type="radio" name="online_option" value="netbanking"> Net Banking</label>
+        <label class="option-label">
+          <input type="radio" name="online_option" value="debit_card" required>
+          Debit Card
+          <span class="checkmark"></span>
+        </label>
+        
+        <label class="option-label">
+          <input type="radio" name="online_option" value="credit_card">
+          Credit Card
+          <span class="checkmark"></span>
+        </label>
+        
+        <label class="option-label">
+          <input type="radio" name="online_option" value="upi">
+          UPI
+          <span class="checkmark"></span>
+        </label>
+        
+        <label class="option-label">
+          <input type="radio" name="online_option" value="netbanking">
+          Net Banking
+          <span class="checkmark"></span>
+        </label>
       </div>
 
       <button type="submit">Place Order</button>
@@ -102,7 +176,7 @@
     }
 
     // On page load, hide online options
-    hideOptions();
+    window.onload = hideOptions;
   </script>
 </body>
 </html>

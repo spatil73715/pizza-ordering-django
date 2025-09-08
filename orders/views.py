@@ -12,11 +12,6 @@ def home(request):
    return render(request, "index.html", {"pizzas": pizzas})
 
 
-
-
-
-
-
 @login_required
 def add_to_cart(request, pizza_id):
     pizza = get_object_or_404(Pizza, id=pizza_id)
