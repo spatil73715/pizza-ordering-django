@@ -1,13 +1,12 @@
-
 body {
-    font-family: Arial, sans-serif;
-    background: #fafafa;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f7fa;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background: #ff5733;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
     color: white;
     padding: 15px;
     text-align: center;
@@ -19,21 +18,21 @@ h1, h2, h3 {
     margin: 20px 0;
 }
 
-/* =====================
+/* =======================
    Pizza Menu Page
-===================== */
+======================== */
 table {
     width: 80%;
     margin: 0 auto 20px auto;
     border-collapse: collapse;
-    background: white;
+    background: #ffffff;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 th {
-    background: #ff5733;
+    background: #2575fc;
     color: white;
     padding: 12px;
     text-align: left;
@@ -41,17 +40,17 @@ th {
 
 td {
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 tr:hover {
-    background: #f9f9f9;
+    background: #f1f5f9;
 }
 
 a.add-btn {
     display: inline-block;
     padding: 6px 12px;
-    background: #ff5733;
+    background: #6a11cb;
     color: white;
     text-decoration: none;
     border-radius: 6px;
@@ -59,7 +58,7 @@ a.add-btn {
 }
 
 a.add-btn:hover {
-    background: #e64e2c;
+    background: #4e08a5;
 }
 
 .order-link {
@@ -67,7 +66,7 @@ a.add-btn:hover {
     width: fit-content;
     margin: 20px auto;
     padding: 10px 16px;
-    background: #28a745;
+    background: #43cea2;
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -76,18 +75,69 @@ a.add-btn:hover {
 }
 
 .order-link:hover {
-    background: #218838;
+    background: #2fa07b;
 }
 
-
+/* =======================
+   Cart Container
+======================== */
 .cart-container {
     width: 60%;
     margin: 40px auto;
     padding: 20px;
-    background: white;
+    background: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .cart-container ul {
-    list-sty
+    list-style: none;
+    padding: 0;
+}
+
+/* =======================
+   Profile Page
+======================== */
+.profile-container {
+    background: #ffffff;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.profile-container h1 {
+    color: #2575fc;
+    margin-bottom: 20px;
+}
+
+.profile-container .info {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.profile-container .info p {
+    margin: 10px 0;
+}
+
+.profile-buttons {
+    margin-top: 20px;
+}
+
+.profile-buttons .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px 5px;
+    background: linear-gradient(90deg, #43cea2, #185a9d);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.profile-buttons .btn:hover {
+    background: linear-gradient(90deg, #2fa07b, #0f3f6b);
+    transform: scale(1.05);
+}

@@ -2,52 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Delivery Address</title>
+  <title>Delivery Address - Pizza Delight</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f7fa;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
     }
+
     .address-box {
       background: white;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       width: 400px;
       text-align: center;
     }
+
     h2 {
-      color: #ff5733;
+      color: #2575fc;
+      margin-bottom: 20px;
     }
+
     textarea {
       width: 100%;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 12px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       resize: none;
+      font-size: 14px;
+      transition: border-color 0.3s;
     }
+
+    textarea:focus {
+      border-color: #2575fc;
+    }
+
     button {
-      background: #28a745;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #43cea2, #185a9d);
       border: none;
       color: white;
-      padding: 12px;
-      width: 100%;
-      border-radius: 6px;
       font-size: 16px;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
     }
+
     button:hover {
-      background: #218838;
+      background: linear-gradient(90deg, #2fa07b, #0f3f6b);
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
+
   <div class="address-box">
     <h2>📦 Enter Delivery Address</h2>
     <form method="post">
@@ -56,5 +71,6 @@
       <button type="submit">Save Address & Continue</button>
     </form>
   </div>
+
 </body>
 </html>

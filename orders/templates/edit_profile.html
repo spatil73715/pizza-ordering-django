@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <h1>Edit Profile</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Save Changes</button>
+  </form>
+  <a href="{% url 'profile' %}" class="btn">Back to Profile</a>
+</body>
+</html>
+<script>
+  {% if messages %}
+    alert("{{ messages.0 }}");
+  {% endif %}
+</script>

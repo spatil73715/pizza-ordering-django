@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Profile - Pizza Delight</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fff8f0;
+      text-align: center;
+      padding: 50px 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .profile-container {
+      background: #fff;
+      max-width: 400px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #ff5733;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+    .info {
+      margin-bottom: 30px;
+    }
+    .info p {
+      font-size: 1.1rem;
+      margin: 10px 0;
+      color: #555;
+    }
+    .password-section {
+      margin-bottom: 30px;
+    }
+    .password-section a {
+      color: #ff5733;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .password-section a:hover {
+      text-decoration: underline;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 8px;
+      background: linear-gradient(90deg, #43cea2, #185a9d);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn:hover {
+      background: linear-gradient(90deg, #2fa07b, #0f3f6b);
+      transform: translateY(-2px);
+    }
+    .danger-btn {
+      background: linear-gradient(90deg, #d9534f, #c9302c);
+    }
+    .danger-btn:hover {
+      background: linear-gradient(90deg, #c9302c, #a52b24);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-container">
+    <h1>👤 Your Profile</h1>
+
+    <div class="info">
+      <p><strong>Username:</strong> {{ user.username }}</p>
+    </div>
+
+    <div class="password-section">
+      <p><strong>Password:</strong> ••••••••</p>
+      <a href="{% url 'password_change' %}">Change Password</a>
+    </div>
+
+    <div>
+      <a href="{% url 'edit_profile' %}" class="btn">✏️ Edit Profile</a>
+      <a href="{% url 'logout' %}" class="btn danger-btn">🚪 Logout</a>
+    </div>
+
+    <div style="margin-top: 30px;">
+      <a href="{% url 'home' %}" class="btn">🍕 Back to Menu</a>
+    </div>
+  </div>
+
+</body>
+</html>

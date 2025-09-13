@@ -7,32 +7,40 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #fafafa;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f7fa;
       margin: 0;
       padding: 0;
     }
 
     header {
-      background: #ff5733;
+      background: linear-gradient(90deg, #43cea2, #76ace2);
       color: white;
-      padding: 15px;
+      padding: 20px;
       text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .cart-container {
+      width: 90%;
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     h2 {
       text-align: center;
-      color: #ff5733;
-      margin: 20px 0;
-    }
-
-    .cart-container {
-      width: 60%;
-      margin: 20px auto;
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      color: #43aece;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
     }
 
     ul {
@@ -41,43 +49,49 @@
     }
 
     ul li {
-      background: #f9f9f9;
-      padding: 12px;
-      margin: 8px 0;
+      background: #e0f7fa;
+      padding: 14px 20px;
+      margin: 10px 0;
       border-radius: 8px;
-      border: 1px solid #ddd;
-      font-size: 16px;
+      border: 1px solid #b2ebf2;
+      color: #333;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .checkout-btn {
       display: block;
       width: fit-content;
       margin: 20px auto 0 auto;
-      padding: 10px 20px;
-      background: #28a745;
+      padding: 12px 24px;
+      background: linear-gradient(90deg, #56ccf2, #6391ce);
       color: white;
       font-weight: bold;
       text-decoration: none;
       border-radius: 8px;
-      transition: background 0.3s;
+      font-size: 1.1rem;
+      transition: background 0.3s, transform 0.2s;
     }
 
     .checkout-btn:hover {
-      background: #218838;
+      background: linear-gradient(90deg, #b4d0f5, #6d9cbe);
+      transform: translateY(-2px);
     }
 
     .empty {
       text-align: center;
-      font-size: 18px;
+      font-size: 1.1rem;
       color: #777;
-      margin: 20px 0;
+      margin: 30px 0;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1> Your Cart</h1>
+  <h1>Your Cart</h1>
 </header>
 
 <div class="cart-container">
@@ -86,7 +100,9 @@
   {% if order %}
     <ul>
       {% for item in order.items.all %}
-        <li>{{ item.pizza.name }} × {{ item.quantity }}</li>
+        <li>
+          {{ item.pizza.name }} × {{ item.quantity }}
+        </li>
       {% endfor %}
     </ul>
     <a href="{% url 'add_address' %}" class="checkout-btn">🚚 Proceed to Address</a>

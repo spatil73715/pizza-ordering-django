@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f8f9fa;
+      background: #f4f7fa;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,14 +21,15 @@
       background: white;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       width: 400px;
     }
 
     h2 {
       text-align: center;
-      color: #d9534f;
+      color: #43aece;
       margin-bottom: 25px;
+      font-size: 1.8rem;
     }
 
     .option-group {
@@ -43,6 +44,7 @@
       cursor: pointer;
       font-size: 16px;
       user-select: none;
+      color: #333;
     }
 
     .option-label input[type="radio"] {
@@ -67,7 +69,7 @@
     }
 
     .option-label input:checked ~ .checkmark {
-      background-color: #d9534f;
+      background: linear-gradient(90deg, #56ccf2, #6391ce);
     }
 
     .checkmark:after {
@@ -97,7 +99,7 @@
     button {
       width: 100%;
       padding: 12px;
-      background: #d9534f;
+      background: linear-gradient(90deg, #56ccf2, #6391ce);
       color: white;
       font-size: 16px;
       border: none;
@@ -107,7 +109,7 @@
     }
 
     button:hover {
-      background: #c9302c;
+      background: linear-gradient(90deg, #b4d0f5, #6d9cbe);
       transform: translateY(-2px);
     }
 
@@ -124,11 +126,11 @@
       
       <div class="option-group">
         <label class="option-label">
-          <input type="radio" name="payment_method" value="cod" onclick="hideOptions()" required>
+          <input type="radio" name="payment_method" value="cod" onclick="hideOptions()" required checked>
           Cash on Delivery
           <span class="checkmark"></span>
         </label>
-        
+
         <label class="option-label">
           <input type="radio" name="payment_method" value="online" onclick="showOptions()" required>
           Online Payment
@@ -168,14 +170,22 @@
 
   <script>
     function showOptions() {
-      document.getElementById('onlineOptions').style.display = 'block';
+      const onlineOptions = document.getElementById('onlineOptions');
+      onlineOptions.style.display = 'block';
+      onlineOptions.querySelectorAll('input[name="online_option"]').forEach(input => {
+        input.required = true;
+      });
     }
 
     function hideOptions() {
-      document.getElementById('onlineOptions').style.display = 'none';
+      const onlineOptions = document.getElementById('onlineOptions');
+      onlineOptions.style.display = 'none';
+      onlineOptions.querySelectorAll('input[name="online_option"]').forEach(input => {
+        input.required = false;
+        input.checked = false;
+      });
     }
 
-    // On page load, hide online options
     window.onload = hideOptions;
   </script>
 </body>

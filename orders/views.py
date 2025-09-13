@@ -3,13 +3,19 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import Pizza, Order, OrderItem
+from django.contrib.auth.forms import UserChangeForm
 
 
 
 @login_required
 def home(request):
-   pizzas = Pizza.objects.all()
-   return render(request, "index.html", {"pizzas": pizzas})
+    pizzas = Pizza.objects.all()
+    offers = [
+        "Get 20% off on orders above ₹500! Use code DELIGHT20",
+        "Free delivery on orders above ₹300!",
+        "Buy 2 pizzas and get 1 free every Friday!"
+    ]
+    return render(request, "index.html", {"pizzas": pizzas, "offers": offers})
 
 
 @login_required
@@ -27,7 +33,6 @@ def add_to_cart(request, pizza_id):
 def cart(request):
     order = Order.objects.filter(user=request.user, is_completed=False).first()
     return render(request, "cart.html", {"order": order})
-
 
 
 @login_required
@@ -52,6 +57,23 @@ def checkout(request):
 def thank_you(request):
     return render(request, "order_success.html")
 
+@login_required
+def profile(request):
+    return render(request, "profile.html", {"user": request.user})
+
+from django.contrib import messages
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile was updated successfully.')
+            return redirect('edit_profile')
+    else:
+        form = UserChangeForm(instance=request.user)
+    return render(request, 'edit_profile.html', {'form': form})
 
 
 def register(request):
@@ -64,7 +86,6 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, "registration/register.html", {"form": form})
-
 
 
 @login_required
